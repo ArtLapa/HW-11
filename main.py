@@ -29,17 +29,16 @@ class Name(Field):
         super().__init__(value)
 
 class Phone(Field):
-    @Field.value.setter
     
-    def is_valid_phone(self, value):
-        """return boolean from check"""
-        return value.isdigit() and len(value) == 10
-    def validate(self, value):
+  
+    def value(self, value: str):
+        
+    
         if len(value) != 10 or not value.isdigit():
-            raise ValueError('Phone should be 10 digits')
-            super().validate(value) 
-            self.validate(value)
-            super().__init__(value)
+            
+            rais
+raise ValueError('Phone should be 10 digits')
+super().value = value
    
 class Birthday(Field):
     @Field.value.setter
