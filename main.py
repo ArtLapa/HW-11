@@ -36,9 +36,8 @@ class Phone(Field):
     
         if len(value) != 10 or not value.isdigit():
             
-            rais
-raise ValueError('Phone should be 10 digits')
-super().value = value
+            raise ValueError('Phone should be 10 digits')
+        super().value = value
    
 class Birthday(Field):
     @Field.value.setter
