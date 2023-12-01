@@ -28,18 +28,33 @@ class Name(Field):
             raise ValueError("Name cannot be empty")
         super().__init__(value)
 
-class Phone(Field):
-    @Field.value.setter
-    
-    def is_valid_phone(self, value):
-        """return boolean from check"""
-        return value.isdigit() and len(value) == 10
-    def validate(self, value):
-        if len(value) != 10 or not value.isdigit():
-            raise ValueError('Phone should be 10 digits')
-            super().validate(value) 
-            self.validate(value)
-            super().__init__(value)
+class Phone:
+    def __init__(self, value: str):
+        self.value = value  # Використовуємо сеттер для перевірки та встановлення значення
+
+    @property
+    def value(self):
+        return self.__value
+
+    @value.setter
+    def value(self, new_value: str):
+        if len(new_value) == 10 and new_value.isdigit():
+            self.__value = new_value
+        else:
+            raise ValueError("invalid phone number")
+
+    def __str__(self):
+        return self.value
+
+# Приклад використання класу
+try:
+    phone_number = Phone("1234567890")  # При вірному номері
+    print(phone_number)  # Виведе: 1234567890
+
+    # Спроба встановити невірний номер
+    phone_number.value = "invalid"
+except ValueError as e:
+    print(f"Error: {e}")
    
 class Birthday(Field):
     @Field.value.setter
